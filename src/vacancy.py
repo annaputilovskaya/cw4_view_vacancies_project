@@ -2,6 +2,8 @@ class Vacancy:
     """
     Класс для работы с вакансией
     """
+    all = []
+
     def __init__(self, title=None, url=None, salary=0, requirements=None, area=None, employer=None):
         self.title = title
         self.url = url
@@ -20,8 +22,8 @@ class Vacancy:
         """
         Отображает информацию о вакансии для разработчика
         """
-        return (f'{self.__class__.__name__}({self.title=}, {self.url=}, {self.salary=}, '
-                f'{self.requirements=}, {self.area=}, {self.employer=})')
+        return (f'{self.__class__.__name__}({self.title}, {self.url}, {self.salary}, '
+                f'{self.requirements}, {self.area}, {self.employer})')
 
     def __lt__(self, other) -> bool:
         """
@@ -72,7 +74,6 @@ class Vacancy:
         """
         Создает список объектов класса Vacancy по данным из JSON
         """
-        all_vacancies = []
         for item in data:
             title = item.get('name')
             url = item.get('url')
@@ -81,5 +82,12 @@ class Vacancy:
             area = item.get('area').get('name')
             employer = item.get('employer').get('name')
             vacancy = Vacancy(title, url, salary, requirements, area, employer)
-            all_vacancies.append(vacancy)
-        return all_vacancies
+            Vacancy.all.append({
+                'title': vacancy.title,
+                'url': vacancy.url,
+                'salary': vacancy.salary,
+                'requirements': vacancy.requirements,
+                'area': vacancy.area,
+                'employer': vacancy.employer
+            })
+        return Vacancy.all
