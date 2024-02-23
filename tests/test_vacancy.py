@@ -30,9 +30,8 @@ def test_str_vacancy(new_vacancy):
 
 
 def test_repr_vacancy(new_vacancy):
-    assert repr(new_vacancy[1]) == ("Vacancy(self.title='Python Developer', "
-                                    "self.url='', self.salary=180000, "
-                                    "self.requirements=None, self.area=None, self.employer=None)")
+    assert repr(new_vacancy[1]) == ("Vacancy(Python Developer, , "
+                                    "180000, None, None, None)")
 
 
 def test_lt_salary(new_vacancy):
