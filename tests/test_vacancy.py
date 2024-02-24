@@ -34,9 +34,45 @@ def test_repr_vacancy(new_vacancy):
                                     "180000, None, None, None)")
 
 
-def test_lt_salary(new_vacancy):
-    assert new_vacancy[0] < new_vacancy[1]
+def test_ge_salary(new_vacancy):
+    assert new_vacancy[1] >= new_vacancy[2]
+    assert new_vacancy[0] >= 90000
+
+
+def test_ge_salary_error(new_vacancy):
+    with pytest.raises(TypeError):
+        new_vacancy[1] >= 'cто тысяч'
 
 
 def test_gt_salary(new_vacancy):
     assert new_vacancy[1] > new_vacancy[2]
+    assert new_vacancy[0] > 90000
+
+
+def test_gt_salary_error(new_vacancy):
+    with pytest.raises(TypeError):
+        new_vacancy[1] > 'cто тысяч'
+
+
+def test_le_salary(new_vacancy):
+    assert new_vacancy[2] <= new_vacancy[1]
+    assert new_vacancy[0] <= 110000
+
+
+def test_le_salary_error(new_vacancy):
+    with pytest.raises(TypeError):
+        new_vacancy[1] <= 'cто тысяч'
+
+
+def test_lt_salary(new_vacancy):
+    assert new_vacancy[2] < new_vacancy[1]
+    assert new_vacancy[0] < 110000
+
+
+def test_lt_salary_error(new_vacancy):
+    with pytest.raises(TypeError):
+        new_vacancy[1] < 'cто тысяч'
+
+
+def test_contains_vacancy(new_vacancy):
+    assert 'опыт' in new_vacancy[0]
