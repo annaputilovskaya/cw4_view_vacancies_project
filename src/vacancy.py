@@ -77,6 +77,10 @@ class Vacancy:
         Проверяет, содержит ли вакансия ключевые слова
         """
         flag = False
+        if words is None:
+            return True
+        elif self.requirements is None:
+            return flag
         for word in words:
             if word in self.requirements:
                 flag = True
