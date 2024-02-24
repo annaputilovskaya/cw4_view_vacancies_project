@@ -10,8 +10,6 @@ hh_vacancies_service = HHVacanciesService()
 
 # Функция для взаимодействия с пользователем
 def user_interaction():
-    platforms = ["HeadHunter"]
-
     # Получение вакансий с hh.ru в формате JSON
     search_query = input("Введите поисковый запрос: ")
     hh_vacancies = hh_vacancies_service.get_vacancies(search_query)
@@ -37,7 +35,10 @@ def user_interaction():
 
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
 
-    print_vacancies(top_vacancies)
+    if len(top_vacancies) > 0:
+        print_vacancies(top_vacancies)
+    else:
+        print('Не найдено вакансий, удовлетоворяющих запросу')
 
 
 if __name__ == "__main__":
